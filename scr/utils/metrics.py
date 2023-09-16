@@ -16,6 +16,6 @@ def padded_cmap(solution, submission, padding_factor=5):
 def validation_epoch_end(y_true, predict):
 
     avg_RMAP = label_ranking_average_precision_score(y_true, predict)
-    avg_custom = padded_cmap(y_true, predict)
+    # avg_custom = padded_cmap(y_true, predict)
 
-    return {'val_RMAP': avg_RMAP, 'CMAP_5': avg_custom}
+    return {'val_RMAP': avg_RMAP}
