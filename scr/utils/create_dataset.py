@@ -36,6 +36,7 @@ class BirdDataset(Dataset):
                  fmax=16000,
                  n_fft=1024,
                  hop_length=256,
+                 tensorflow = False
                  ):
 
         self.df = df
@@ -48,6 +49,7 @@ class BirdDataset(Dataset):
         self.fmax = fmax
         self.n_fft = n_fft
         self.hop_length = hop_length
+        self.tensorflow = tensorflow
 
     def __len__(self):
         return len(self.df)
@@ -84,7 +86,10 @@ class BirdDataset(Dataset):
         # Создаем из аудиозаписи в 1 канал RGB изображение и нормализуем его
         image = mono_to_color(melspec)
         image = normalize(image)
-        image = torch.tensor(image).float()
+        if self.tensorflow:
+            image = image.transpose((1, 2, 0))
+        else:
+            image = torch.tensor(image).float()
 
         # Создаю тензор с лейблом, для y вектора
         target_value = np.array([0] * 264, dtype=float)

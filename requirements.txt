@@ -17,3 +17,7 @@ loguru
 segmentation-models-pytorch==0.3.3
 soundfile
 librosa
+
+tensorflow
+tensorflow_hub
+tensorflow_io
