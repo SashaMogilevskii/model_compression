@@ -1,5 +1,4 @@
 .DS_Store
-data
+#data
 data.rar
-data.csv
 venv
